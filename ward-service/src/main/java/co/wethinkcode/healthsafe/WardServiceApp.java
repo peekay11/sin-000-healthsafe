@@ -8,6 +8,7 @@ public class WardServiceApp {
     public static void main(String[] args) {
         MqConfig.connect();
         MqConfig.subscribeTopic();
+        JsonReader.publishSampleFailures();
 
         Javalin app = Javalin.create().start(7031);
 
@@ -23,6 +24,11 @@ public class WardServiceApp {
                 return;
             }
             ctx.contentType("application/json").result(event);
+        });
+        app.post("/equipment-failure", ctx -> {
+            EquipmentFailurePayload payload = ctx.bodyAsClass(EquipmentFailurePayload.class);
+            MqConfig.publishEquipmentFailure(payload);
+            ctx.status(202).json(payload);
         });
         app.events(event -> event.serverStopping(MqConfig::close));
     }

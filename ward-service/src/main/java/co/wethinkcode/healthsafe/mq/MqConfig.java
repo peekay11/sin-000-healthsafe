@@ -1,5 +1,6 @@
 package co.wethinkcode.healthsafe.mq;
 
+import co.wethinkcode.healthsafe.EquipmentFailurePayload;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.activemq.ActiveMQConnectionFactory;
@@ -18,6 +19,7 @@ public final class MqConfig {
 
     public static final String BROKER_URL = "tcp://localhost:61616";
     public static final String TOPIC = "staffing-events-topic";
+    public static final String QUEUE = "equipment-failure-queue";
 
     private static final ConnectionFactory CONNECTION_FACTORY = new ActiveMQConnectionFactory(BROKER_URL);
     private static final ObjectMapper JSON = new ObjectMapper();
@@ -78,6 +80,23 @@ public final class MqConfig {
 
     public static String lastStaffingEvent() {
         return lastStaffingEvent;
+    }
+
+    public static void publishEquipmentFailure(EquipmentFailurePayload payload) {
+        connect();
+        if (session == null) {
+            System.out.println("No broker connection, equipment failure not published");
+            return;
+        }
+
+        try (MessageProducer producer = session.createProducer(session.createQueue(QUEUE))) {
+            producer.setDeliveryMode(DeliveryMode.PERSISTENT);
+            TextMessage message = session.createTextMessage(JSON.writeValueAsString(payload));
+            producer.send(message);
+            System.out.println("Published equipment failure for ward " + payload.wardId());
+        } catch (Exception e) {
+            System.out.println("Could not publish equipment failure: " + e.getMessage());
+        }
     }
 
     public static synchronized void close() {

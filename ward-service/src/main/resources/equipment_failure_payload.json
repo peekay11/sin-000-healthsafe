@@ -1,0 +1,26 @@
+[
+  {
+    "wardId": "W-01",
+    "equipment": "Ventilator VENT-104",
+    "severity": "CRITICAL",
+    "time": "2026-10-29T12:25:00Z"
+  },
+  {
+    "wardId": "W-03",
+    "equipment": "Patient Monitor MON-208",
+    "severity": "HIGH",
+    "time": "2026-10-29T12:31:15Z"
+  },
+  {
+    "wardId": "W-05",
+    "equipment": "Infusion Pump INF-502",
+    "severity": "MEDIUM",
+    "time": "2026-10-29T12:40:00Z"
+  },
+  {
+    "wardId": "W-02",
+    "equipment": "Negative Pressure Unit HVAC-01",
+    "severity": "HIGH",
+    "time": "2026-10-29T12:45:10Z"
+  }
+]
