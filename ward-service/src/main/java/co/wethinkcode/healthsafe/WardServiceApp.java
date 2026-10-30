@@ -8,11 +8,9 @@ public class WardServiceApp {
         Javalin app = Javalin.create().start(7031);
 
         app.get("/health", ctx -> ctx.result("OK"));
-
-        // TODO (Provides lists of wards and departments.)
-        // Add domain endpoints for ward-service here.
+        app.get("/wards", DataRetrieval::wards);
+        app.get("/wards/{id}", DataRetrieval::ward);
+        app.get("/ward/{id}", DataRetrieval::ward);
+        app.get("/departments", DataRetrieval::departments);
     }
 }
-
-// MQ TODO: subscribes to ActiveMQ topic MqConfig.TOPIC at MqConfig.BROKER_URL (see co.wethinkcode.healthsafe.mq.MqConfig)
-// MQ TODO: publishes to ActiveMQ queue MqConfig.QUEUE when it detects an equipment failure on one of its wards.
