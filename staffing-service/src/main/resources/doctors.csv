@@ -1,0 +1,21 @@
+Doctor_id,Full_Name,Specialization,Department,Status
+DOC-101,Dr. Sarah Connor,Cardiology,Cardiology,Active
+DOC-102,Dr. John Doe,Paediatrics,Paediatrics,Active
+DOC-103,Dr. Alice Smith,Paediatrics,Paediatrics,Active
+DOC-104,Dr. Robert Chen,Cardiology,Cardiology,Active
+DOC-105,Dr. Emily Taylor,Critical Care,ICU,Active
+DOC-106,Dr. Michael Patel,Anesthesiology,ICU,Active
+DOC-107,Dr. Grace Hopper,Oncology,Oncology,Active
+DOC-108,Dr. David Kim,Radiology,Radiology,Active
+DOC-109,Dr. Hannah Abbott,Obstetrics & Gynecology,Maternity,Active
+DOC-110,Dr. James Wilson,Oncology,Oncology,Active
+DOC-111,Dr. Gregory House,Cardiology,Cardiology,Active
+DOC-112,Dr. Meredith Grey,Paediatrics,Paediatrics,Active
+DOC-113,Dr. Derek Shepherd,Critical Care,ICU,Active
+DOC-114,Dr. Cristina Yang,Cardiology,Cardiology,Active
+DOC-115,Dr. Alex Karev,Paediatrics,Paediatrics,Active
+DOC-116,Dr. Miranda Bailey,Maternity,Maternity,Active
+DOC-117,Dr. Lisa Cuddy,Oncology,Oncology,Active
+DOC-118,Dr. Eric Foreman,Radiology,Radiology,Active
+DOC-119,Dr. Allison Cameron,Radiology,Radiology,Active
+DOC-120,Dr. Robert Chase,Critical Care,ICU,Active

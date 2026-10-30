@@ -1,6 +1,9 @@
 package co.wethinkcode.healthsafe;
 
 import io.javalin.Javalin;
+import io.javalin.http.Context;
+
+import java.util.Map;
 
 public class StaffingServiceApp {
 
@@ -8,10 +11,15 @@ public class StaffingServiceApp {
         Javalin app = Javalin.create().start(7033);
 
         app.get("/health", ctx -> ctx.result("OK"));
+        app.get("/staffing/{wardId}", StaffingServiceApp::schedule);
+    }
 
-        // TODO (Provides on-call schedules for doctors based on ward and status.)
-        // Add domain endpoints for staffing-service here.
+    private static void schedule(Context ctx) {
+        WardData.Result result = WardData.buildSchedule(ctx.pathParam("wardId"));
+        if (result.schedule() != null) {
+            ctx.json(result.schedule());
+            return;
+        }
+        ctx.status(result.status()).json(Map.of("error", result.error()));
     }
 }
-
-// MQ TODO: publishes to ActiveMQ topic MqConfig.TOPIC at MqConfig.BROKER_URL (see co.wethinkcode.healthsafe.mq.MqConfig)
