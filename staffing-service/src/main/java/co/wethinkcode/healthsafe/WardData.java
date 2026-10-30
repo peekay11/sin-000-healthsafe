@@ -1,5 +1,6 @@
 package co.wethinkcode.healthsafe;
 
+import co.wethinkcode.healthsafe.mq.MqConfig;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opencsv.CSVReader;
@@ -74,6 +75,7 @@ public final class WardData {
         String department = ward.path("department").asText("");
         String[] chosen = chosenDoctors(neededDoctors(alertLevel), doctors, department);
         Schedule schedule = new Schedule(chosen, alertLevel, department, ward.path("ward_id").asText(wardId));
+        MqConfig.publishStaffEvents(schedule);
         return Result.ok(schedule);
     }
 

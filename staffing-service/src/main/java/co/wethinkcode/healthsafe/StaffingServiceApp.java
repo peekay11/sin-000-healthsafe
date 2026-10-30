@@ -1,5 +1,6 @@
 package co.wethinkcode.healthsafe;
 
+import co.wethinkcode.healthsafe.mq.MqConfig;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 
@@ -12,6 +13,7 @@ public class StaffingServiceApp {
 
         app.get("/health", ctx -> ctx.result("OK"));
         app.get("/staffing/{wardId}", StaffingServiceApp::schedule);
+        app.events(event -> event.serverStopping(MqConfig::close));
     }
 
     private static void schedule(Context ctx) {
